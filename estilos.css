@@ -1,0 +1,470 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #EAEDED;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.contenedor {
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+main article {
+    background: #FFF;
+    margin: 20px 0;
+    padding: 20px;
+    height: 1000px;
+}
+
+
+/* ------------------------- */
+/* ENLACES DEL NAV */
+/* ------------------------- */
+.menu {
+    background: #232F3E;
+    padding: 5px 0;
+    margin-bottom: 20px;
+}
+
+.menu .contenedor-botones-menu {
+    /* display: flex; Posiciona los botones a la izquierda y a la derecha  */
+    display: none; 
+    justify-content: space-between;
+}
+
+.menu .contenedor-botones-menu button {
+    font-size: 20px;
+    color: #FFF;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    display: inline-block;
+    cursor: pointer;
+    background: none;
+}
+
+.menu .contenedor-botones-menu button:hover {
+    border: 1px solid rgba(255, 255, 255, .4);
+}
+
+.menu .contenedor-botones-menu .btn-menu-cerrar {
+    display: none; /* Ocultar el boton de menu para cerrar */
+}
+
+.menu .contenedor-botones-menu .btn-menu-cerrar.activo {  /* Clase utilizada para Javascript */
+    display: inline-block;
+}
+
+.menu .contenedor-enlaces-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu .btn-departamentos {
+    color: #FFF;
+    padding: 7px;
+    border-radius: 3px;
+    display: flex;
+    align-items: flex-end;
+    border: 1px solid transparent;
+    font-size: 12px;
+    cursor: default;
+}
+
+.menu .btn-departamentos i {
+    margin-left: 20px;
+    position: relative;  /* Se puede desplazar el icono */
+    bottom: 3px;
+}
+
+.menu .btn-departamentos:hover {
+    border: 1px solid rgba(255, 255, 255, .4);
+}
+
+.menu .btn-departamentos span {
+    display: block; /* Departamentos abarca todo el espacio disponible */
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.menu .contenedor-enlaces-nav .enlaces a {
+    color: #CCC;
+    border: 1px solid transparent;
+    padding: 7px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.menu .contenedor-enlaces-nav .enlaces a:hover {
+    border: 1px solid rgba(255, 255, 255, .4);
+}
+
+
+/* ------------------------- */
+/* GRID*/
+/* ------------------------- */
+.contenedor-grid {
+    position: relative;  /* La grid se puede desplazar hacia abajo */
+}
+
+.grid {
+    width: 100%;
+    display: none;  /* Comando para ocultar la menu (grid)   */
+    /*background: #CCC;  Color gris */
+    position: absolute;
+    top: 5px; /* Bajar 5 px la grid */
+    z-index: 1000;  /* Comando para posicionar el menu arriba de los elemetos */
+    /* display: grid;  Css grid */
+    grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+    grid-template-rows: 1fr; /* Una fila */
+    grid-template-areas: "categorias subcategorias subcategorias subcategorias";
+}
+
+.grid.activo {
+    display: grid;
+}
+
+.grid::before {
+    content: ""; /* "": Cadena de texto vacia */
+    display: block;
+    background: transparent;
+    border-left: 5px solid transparent; /*Creación del triangulo  */
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #FFF;
+    position: absolute;
+    top: -5px;
+    left: 65px;
+}
+
+.grid > div {  /* Los grid intenos directamente */
+    background: #FFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, .10);
+
+}
+
+
+
+/* ------------------------- */
+/* CATEGORIAS*/
+/* ------------------------- */
+.grid .btn-regresar { /* Boton regresar (Ocultar) */
+    background: #232F3E;
+    font-family: Arial, sans-serif;
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    display: none; 
+}
+
+.grid .btn-regresar i {
+    margin-right: 10px;
+}
+
+.grid .categorias {
+    grid-area: categorias;
+    padding-top: 10px;
+    min-height: 300px;
+    overflow: auto;
+}
+
+.grid .categorias .subtitulo {
+    display: none; /* Ocultar */
+}
+
+.grid .categorias a { /* Enlaces */
+    color: #000;
+    font-size: 14px;
+    display: flex; /* Texto a la izquierda y la flecha a la derecha */
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.grid .categorias a i {
+    display: none;
+}
+
+.grid .categorias a:hover {
+    color: #E47911;
+    font-weight: bold;
+}
+
+.grid .categorias a:hover i {  /* Iconos */
+    display: inline-block; /* Comando para mostrar los iconos */
+}
+
+
+/* ------------------------- */
+/* SUBCATEGORIAS*/
+/* ------------------------- */
+.grid .contenedor-subcategorias {
+    grid-area: subcategorias;
+
+}
+
+.grid .subcategoria {
+    display: none;  /* Separaciones */
+    grid-template-columns: 1fr 1fr 1fr; /* Tres columnas */
+    grid-template-rows: 1fr;
+    height: 100%; /* Altura */
+}
+
+.grid .subcategoria.activo {
+    display: grid;
+}
+
+.grid .subcategoria img {
+    width: 100%; /* Ancho */
+    vertical-align: top; /* Quita los margenes por defecto */
+    height: 100%;
+    object-fit: cover;
+}
+
+.grid .enlaces-subcategoria {
+    padding-top: 10px;
+    height: 100%;
+    max-height: 300px;
+    overflow: auto;  /* Barra de navegación */
+}
+
+.grid .enlaces-subcategoria a {
+    color: #000;
+    display: block;
+    font-size: 14px;
+    padding: 10px 20px;
+}
+
+.grid .enlaces-subcategoria a:hover {
+    color: #E47911;
+}
+
+.grid .subtitulo {
+    font-size: 18px;
+    font-weight: normal;
+    color: #E47911;
+    padding: 10px 20px;
+}
+
+.grid .banner-subcategoria a {
+    display: block; /* Una imagen debajo la otra */
+    height: 100%;
+}
+
+.grid .galeria-subcategoria {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: start;
+}
+
+.grid .galeria-subcategoria a {
+    width: 50%;
+    height: 50%;
+}
+
+
+/* ------------------------- */
+/* MEDIAQUERIES */
+/* ------------------------- */
+@media screen and (max-width: 1000px) {
+    .menu .contenedor-enlaces-nav {
+        padding: 0 10px;
+    }
+
+    .menu .contenedor {
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 800px) {
+
+    .menu .contenedor {
+        width: 90%;
+    }
+
+    .menu .contenedor-botones-menu {
+        display: flex;
+    }
+
+    .menu .contenedor-enlaces-nav {
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        left: 0;
+        background: #232F3F;
+        height: 100vh;
+        width: 80%;
+        z-index: 2000;
+        transition: .3s ease all;
+        transform: translate(-100%);
+    }
+
+    .menu .contenedor-enlaces-nav.activo {
+        transform: translate(0%);
+    }
+
+    .menu .btn-departamentos {
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+
+    .menu .btn-departamentos i {
+        position: static;
+        margin-left: 20px;
+        transform: rotate(-90deg);
+    }
+
+    .menu .enlaces {
+        width: 100%;
+    }
+
+    .menu .enlaces a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px;
+    }
+    
+    .grid {
+        display: grid;
+        transition: .3s ease all;
+        transform: translateX(-100%); 
+        z-index: 3000;
+        width: 80%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        grid-template-areas: "categorias categorias categorias categorias";
+    }
+
+    .grid.activo {
+        transform: translateX(0);
+    }
+
+    .grid::before {
+        display: none; /* Quita el triangulo */
+    }
+
+    .grid .btn-regresar {
+        display: inline-block; /* Muestra el boton */
+    }
+
+    .grid .categorias .subtitulo {
+        display: block;
+    }
+
+    .grid .contenedor-subcategorias {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%); 
+        transition: .3s ease all;
+        overflow: auto;
+    }
+
+    .grid .contenedor-subcategorias.activo {
+        transform: translateX(0);
+    }
+
+    .grid .contenedor-subcategorias .subcategoria {
+        grid-template-columns: 1fr;
+    }
+
+    .grid .contenedor-subcategorias .banner-subcategoria {
+        width: 100%;
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .grid .contenedor-subcategorias .enlaces-subcategoria {
+        min-height: 50vh;
+        overflow: auto;
+    }
+
+    .grid .contenedor-subcategorias .galeria-subcategoria a {
+        width: 25%;
+        height: 100%;
+
+    }
+
+
+
+
+    
+}
+
+/* 
+ 
+    .grid .contenedor-subcategorias .subcategoria {
+        grid-template-columns: 1fr;
+
+    }
+
+    .grid .contenedor-subcategorias .banner-subcategoria {
+        width: 100%;
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .grid .contenedor-subcategoria .enlaces-subcategoria {
+        min-height: 50vh;
+        overflow: auto;
+    }
+
+     */
+
+    
+
+    
+     
+
+
+
+
+
+
+    /*  
+    .grid .contenedor-subcategorias.activo {
+        transform: translateX(0);
+    }
+
+    .grid .contenedor-subcategorias .subcategoria {
+        grid-template-columns: 1fr;
+    }
+
+    .grid .contenedor-subcategorias .banner-subcategoria {
+        width: 100%;
+        min-height: 250px;
+        max-height: 350px;
+    }
+
+    .grid .contenedor-subcategorias .enlaces-subcategoria {
+        min-height: 50vh; Mitad de pantalla 
+        overflow: hidden;
+    }
+
+
+
+
+    transition: .3s ease all;
+        overflow: auto; Aparezce un scroll segun el tamaño 
+        display: none;  Ocultar la barra de contenedor-subcategorias 
+    */
